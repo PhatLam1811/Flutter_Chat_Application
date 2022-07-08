@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_chat_app/utilities/constant_values.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -12,7 +13,7 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      backgroundColor: Colors.white,
+      backgroundColor: background1,
       body: InkWell(
         highlightColor: Colors.transparent,
         focusColor: Colors.transparent,
@@ -34,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     'Welcome to MeChat',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff1B262C),
+                      color: theme1,
                       fontSize: 30.0,
                     ),
                   ),
@@ -72,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     const Text(
                       'Forgot password?',
                       style: TextStyle(
-                        color: Colors.black,
+                        color: text1,
                         fontWeight: FontWeight.bold,
                         fontSize: 12.0,
                       ),
@@ -101,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    primary: const Color(0xff0F4C75),
+                    primary: theme2,
                     minimumSize: const Size.fromHeight(47.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
@@ -136,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12.0,
-                        color: Color(0xff787A91),
+                        color: text2,
                       ),
                     ),
                     Expanded(
@@ -155,7 +156,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     elevation: 1,
-                    primary: const Color(0xff3282B8),
+                    primary: theme3,
                     minimumSize: const Size.fromHeight(47.0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10.0),
