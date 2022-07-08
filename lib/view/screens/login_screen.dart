@@ -27,7 +27,7 @@ class _LoginScreenState extends State<LoginScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const SizedBox(
-                  height: 120.0,
+                  height: 135.0,
                 ),
                 const Center(
                   child: Text(
@@ -118,7 +118,39 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 7.0,
+                  height: 5.0,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Divider(
+                          thickness: 2.0,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'Or',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12.0,
+                        color: Color(0xff787A91),
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10.0),
+                        child: Divider(
+                          thickness: 2.0,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 5.0,
                 ),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
