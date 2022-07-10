@@ -9,6 +9,39 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final FocusNode _focusNode = FocusNode();
+  final TextEditingController _textEditController = TextEditingController();
+  final String _emailFormat = "^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+";
+
+  String? _emailError;
+
+  void _validateEmail () {
+    String input = _textEditController.value.text;
+
+    if (input.trim().isEmpty) {
+      setState(() {_emailError = "Can't be empty";});
+    }
+    else if (!RegExp(_emailFormat).hasMatch(input)) {
+      setState(() {_emailError = "Invalid email";});
+    }
+    else {
+      setState(() {_emailError = null;});
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _focusNode.addListener(_validateEmail);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _focusNode.dispose();
+    _textEditController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,18 +54,16 @@ class _LoginScreenState extends State<LoginScreen> {
         onTap: () => FocusScope.of(context).unfocus(),
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 40.0,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 40.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(
-                  height: 135.0,
-                ),
-                const Center(
+                /// Title
+                const SizedBox(height: 135.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5.0),
                   child: Text(
-                    'Welcome to MeChat',
+                    'Welcome Back!',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       color: theme1,
@@ -40,33 +71,36 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 70.0,
-                ),
+
+                /// Email or Phone Number
+                const SizedBox(height: 60.0),
                 TextField(
+                  controller: _textEditController,
+                  focusNode: _focusNode,
                   decoration: InputDecoration(
+                    errorText: _emailError,
                     labelText: 'Email or Phone Number',
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 17.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
+                    labelStyle: const TextStyle(fontSize: 15.0),
+                    contentPadding: const EdgeInsets.all(5.0),
+                    prefixIcon: const Icon(Icons.account_circle),
                   ),
                 ),
-                const SizedBox(
-                  height: 10.0,
-                ),
-                TextField(
+
+                /// Password
+                const SizedBox(height: 10.0),
+                const TextField(
+                  maxLines: 1,
                   obscureText: true,
+                  textAlignVertical: TextAlignVertical(y: 0.5),
                   decoration: InputDecoration(
                     labelText: 'Password',
-                    contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 15.0, vertical: 17.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(15.0),
-                    ),
+                    labelStyle: TextStyle(fontSize: 15.0),
+                    contentPadding: EdgeInsets.all(5.0),
+                    prefixIcon: Icon(Icons.key),
                   ),
                 ),
+
+                /// Reset Password
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -96,16 +130,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 25.0,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    elevation: 1,
-                    primary: theme2,
+
+                /// Sign In
+                const SizedBox(height: 20.0),
+                TextButton(
+                  style: TextButton.styleFrom(
+                    backgroundColor: theme2,
+                    primary: background1,
                     minimumSize: const Size.fromHeight(47.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(3.0),
                     ),
                   ),
                   onPressed: () {},
@@ -118,18 +152,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(
-                  height: 5.0,
-                ),
+
+                const SizedBox(height: 5.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Divider(
-                          thickness: 2.0,
-                        ),
+                        child: Divider(thickness: 2.0),
                       ),
                     ),
                     Text(
@@ -143,26 +174,25 @@ class _LoginScreenState extends State<LoginScreen> {
                     Expanded(
                       child: Padding(
                         padding: EdgeInsets.symmetric(horizontal: 10.0),
-                        child: Divider(
-                          thickness: 2.0,
-                        ),
+                        child: Divider(thickness: 2.0),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
-                  height: 5.0,
-                ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(
+
+                /// Register
+                const SizedBox(height: 5.0),
+                TextButton(
+                  style: TextButton.styleFrom(
                     elevation: 1,
-                    primary: theme3,
+                    backgroundColor: theme3,
+                    primary: background1,
                     minimumSize: const Size.fromHeight(47.0),
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
+                      borderRadius: BorderRadius.circular(3.0),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () => Navigator.pushNamed(context, '/register'),
                   child: const Text(
                     'Create New Account',
                     style: TextStyle(

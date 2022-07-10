@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_chat_app/view/screens/home_screen.dart';
 import 'package:flutter_chat_app/view/screens/login_screen.dart';
 import 'package:flutter_chat_app/view/screens/menu_screen.dart';
+import 'package:flutter_chat_app/view/screens/register_screen.dart';
 
 void main() => runApp(const MyChatApp());
 
@@ -14,6 +15,7 @@ class MyChatApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginScreen(),
+        '/register': (context) => const RegisterScreen(),
         '/home': (context) => const HomeScreen(),
         '/menu': (context) => const MenuScreen(),
       },
